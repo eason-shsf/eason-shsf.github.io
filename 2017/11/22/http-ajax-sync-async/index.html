@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Yu Junhua&#39;s blog
+        关于HTTP请求、Ajax请求，请求的同步和异步｜Yu Junhua&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://haojen.github.io/archives/2018/08/">
+    <link rel="canonical" href="http://haojen.github.io/2017/11/22/http-ajax-sync-async/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -119,180 +119,143 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/img/avatar.jpg"/>
-                        <h5><a href="/about/">Yu Junhua</a></h5>
-                        <p>前端总结，所思所想！</p>
+
+<img class="wechat-title-img"
+     src="/img/header.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/img/header.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>关于HTTP请求、Ajax请求，请求的同步和异步</h1>
+                    
+                    <span class="meta">
+                         作者 Yu Junhua
+                        <span>
+                          日期 2017-11-22
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            关于HTTP请求、Ajax请求，请求的同步和异步
+        </span>
+    </div>
+</header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>使用了很长时间的Ajax请求了，一直都是在以异步的方式在使用。昨天听了一个讲座涉及到apache server，偶然想到了这Ajax请求和HTTP请求的一些区别和联系，就在网上好好搜了一顿，把搜到的结果写一下，理清一下自己的头绪吧。    </p>
+<p>首先最早是没有Ajax请求的，只有普通的HTTP请求，这个时候发送一次HTTP请求，Server端就会计算后将数据放在一个HTML网页上返回来，客户端需要刷新网页，也就是每次请求都刷新网页。Ajax请求实现了返回xml或者json数据而不是html，然后支持在html不变情况下动态更新页面内容而无需刷新。  </p>
+<p>这是HTTP和Ajax的区别。  </p>
+<p>以前我用Ajax只用了异步请求，就以为他俩的区别除了上述区别，还包括Ajax请求是异步的，HTTP是同步的，这种误解当然是错的。  </p>
+<p>不管传统的HTTP请求还是Ajax请求，都有同步和异步两种选项。  </p>
+<p>仍以Ajax请求为例，该请求最终通过JavaScript的XMLHttpRequest发送，这个请求对象实例化的时候第二个参数可以配置同步或异步，配置为同步之后会阻塞浏览器页面的线程（也可能是进程），返回结果前客户端不再响应用户请求。配置为异步之后不会阻塞浏览器线程，继续进行浏览器渲染和响应用户操作，直到response返回后回调函数处理结果。  </p>
+<p>最后还要说一点现在普遍使用Ajax的情况下，传统Http请求主要用于资源文件的请求。  </p>
 
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2018/08/10/mimiprogram-certificate-problem-android/">
-        <h2 class="post-title">
-            关于android系统中微信小程序连接后台报错
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在远程调试我的微信小程序的时候发现了如下报错:errMsg:"request:fail ssl hand shake error:java.security.cert.CertPathValidatorException: Trust anchor for certification path ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('/img/header.jpg')">
-    <a href="/2018/08/06/how_to_insert_image/">
-        <h2 class="post-title">
-            如何在hexo博客中插入图片
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-06
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
+                <hr>
                 
-首先在_config.yml文件中插入post_asset_folder: true
-然后通过命令hexo new theName生成新的博客，此时生成的博客可以自带一个同名文件夹里面放入的图片，可以在md文档中当做当前路径的图片引用。  
 
-配置为![](image.jpg) 的图片显示如下..
-            </p>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/01/15/hello-world/" data-toggle="tooltip" data-placement="top"
+                           title="Hello World">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/06/04/malcov-learn1/" data-toggle="tooltip" data-placement="top"
+                           title="隐马尔科夫模型学习笔记">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
         </div>
-    </a>
 
-</div>
+        <div class="row">
+            <!-- Sidebar Container -->
 
-<hr>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/img/avatar.jpg"/>
-                    
-                    <h5><a href="/about/">Yu Junhua</a></h5>
-                    
-                    <p>前端总结，所思所想！</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
                         
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/xiaohua11111">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/eason-yu">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+                    </div>
+                </section>
+                
 
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
                         
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/eason-shsf">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
+                        <li><a href="http://www.xiaoleon.cn">xiao leon</a></li>
                         
                     </ul>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
                 
-                <li><a href="http://www.xiaoleon.cn" target="_blank">xiao leon</a></li>
-                
-            </ul>
-            
-
+            </div>
         </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Yu Junhua&#39;s blog
+        如何在hexo博客中插入图片｜Yu Junhua&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://haojen.github.io/archives/2018/08/">
+    <link rel="canonical" href="http://haojen.github.io/2018/08/06/how_to_insert_image/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -119,180 +119,143 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/img/avatar.jpg"/>
-                        <h5><a href="/about/">Yu Junhua</a></h5>
-                        <p>前端总结，所思所想！</p>
+
+<img class="wechat-title-img"
+     src="/img/header.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/img/header.jpg?imageView2/1/w/1400/h/400/interlace/1/q/90')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>如何在hexo博客中插入图片</h1>
+                    
+                    <span class="meta">
+                         作者 Yu Junhua
+                        <span>
+                          日期 2018-08-06
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2018/08/10/mimiprogram-certificate-problem-android/">
-        <h2 class="post-title">
-            关于android系统中微信小程序连接后台报错
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在远程调试我的微信小程序的时候发现了如下报错:errMsg:"request:fail ssl hand shake error:java.security.cert.CertPathValidatorException: Trust anchor for certification path ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('/img/header.jpg')">
-    <a href="/2018/08/06/how_to_insert_image/">
-        <h2 class="post-title">
+    <div class="post-title-haojen">
+        <span>
             如何在hexo博客中插入图片
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-06
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-首先在_config.yml文件中插入post_asset_folder: true
-然后通过命令hexo new theName生成新的博客，此时生成的博客可以自带一个同名文件夹里面放入的图片，可以在md文档中当做当前路径的图片引用。  
+        </span>
+    </div>
+</header>
 
-配置为![](image.jpg) 的图片显示如下..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <ul>
+<li>首先在_config.yml文件中插入post_asset_folder: true</li>
+<li><p>然后通过命令hexo new theName生成新的博客，此时生成的博客可以自带一个同名文件夹里面放入的图片，可以在md文档中当做当前路径的图片引用。  </p>
+</li>
+<li><p>配置为![](image.jpg) 的图片显示如下:<br><img src="image.jpg" alt="">  </p>
+</li>
 </ul>
 
+                <hr>
+                
 
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/08/10/mimiprogram-certificate-problem-android/" data-toggle="tooltip" data-placement="top"
+                           title="关于android系统中微信小程序连接后台报错">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/05/15/async-await-using-promise/" data-toggle="tooltip" data-placement="top"
+                           title="通过promise自己实现一套async-await来学习async-await">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
         </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
 
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/img/avatar.jpg"/>
-                    
-                    <h5><a href="/about/">Yu Junhua</a></h5>
-                    
-                    <p>前端总结，所思所想！</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/xiaohua11111">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/eason-yu">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+        <div class="row">
+            <!-- Sidebar Container -->
 
-                        
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
                         
+                    </div>
+                </section>
+                
 
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
                         
-                        <li>
-                            <a target="_blank" href="https://github.com/eason-shsf">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
+                        <li><a href="http://www.xiaoleon.cn">xiao leon</a></li>
                         
                     </ul>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
                 
-                <li><a href="http://www.xiaoleon.cn" target="_blank">xiao leon</a></li>
-                
-            </ul>
-            
-
+            </div>
         </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->

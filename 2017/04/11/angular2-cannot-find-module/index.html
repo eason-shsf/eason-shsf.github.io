@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Yu Junhua&#39;s blog
+        关于cannot find module &#39;xxxx’的一个可能解决方法｜Yu Junhua&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://haojen.github.io/archives/2018/08/">
+    <link rel="canonical" href="http://haojen.github.io/2017/04/11/angular2-cannot-find-module/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -119,180 +119,136 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/img/avatar.jpg"/>
-                        <h5><a href="/about/">Yu Junhua</a></h5>
-                        <p>前端总结，所思所想！</p>
+
+<img class="wechat-title-img"
+     src="/img/header.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('/img/header.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>关于cannot find module &#39;xxxx’的一个可能解决方法</h1>
+                    
+                    <span class="meta">
+                         作者 Yu Junhua
+                        <span>
+                          日期 2017-04-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            关于cannot find module 'xxxx’的一个可能解决方法
+        </span>
+    </div>
+</header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>由于学习angular2，想单独学习一下typescript下angular2使用的‘rxjs’是怎么使用的，我用npm自己安装了rxjs，并使用了如下语句<br>import { Observable } from ‘rxjs’;<br>报错如下：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">cannot find module 'rxjs'，</span><br></pre></td></tr></table></figure></p>
+<p>但是同样的语句在angular/cli生成的angular项目下是不报错的，我找了半天，各种解决方法都不适用于我遇到的情况。由于这个是typescript import时报的错误，我查看了typescript module对应的讲解：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">Module Resolution Strategies    </span><br><span class="line">There are two possible module resolution strategies: Node and Classic. You can use the --moduleResolution flag to specify the module resolution strategy. If not specified, the default is Classic for --module AMD | System | ES2015or Node otherwise.   </span><br><span class="line">``` </span><br><span class="line">也就是说typescript是有两种module管理的方式的，默认的不是node，是classic，我们看看node和classic分别是怎么进行import时的module查找的，我只说non-relative的情况，因为我这里要找node_modules下的第三方包，属于nonrelative：       </span><br><span class="line">先说classic：       </span><br><span class="line">```html </span><br><span class="line">Classic</span><br><span class="line">This used to be TypeScript’s default resolution strategy. Nowadays, this strategy is mainly present for backward compatibility.    </span><br><span class="line">For non-relative module imports, however, the compiler walks up the directory tree starting with the directory containing the importing file, trying to locate a matching definition file.     </span><br><span class="line"></span><br><span class="line">For example:    </span><br><span class="line"></span><br><span class="line">A non-relative import to moduleB such as import &#123; b &#125; from "moduleB", in a source file /root/src/folder/A.ts, would result in attempting the following locations for locating "moduleB":</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">/root/src/folder/moduleB.ts</span><br><span class="line">/root/src/folder/moduleB.d.ts</span><br><span class="line">/root/src/moduleB.ts</span><br><span class="line">/root/src/moduleB.d.ts</span><br><span class="line">/root/moduleB.ts</span><br><span class="line">/root/moduleB.d.ts</span><br><span class="line">/moduleB.ts</span><br><span class="line">/moduleB.d.ts</span><br></pre></td></tr></table></figure>
+<p>找的可以看出其并不会找到nodejs的node_modules中，node的方式则会找到nodejs中，类似上面的方式，如果我也是import{b} from “moduleB”, 逐级向上查找，代码如下所示：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">/root/src/node_modules/moduleB.js</span><br><span class="line">/root/src/node_modules/moduleB/package.json (if it specifies a "main" property)</span><br><span class="line">/root/src/node_modules/moduleB/index.js </span><br><span class="line"></span><br><span class="line">/root/node_modules/moduleB.js</span><br><span class="line">/root/node_modules/moduleB/package.json (if it specifies a "main" property)</span><br><span class="line">/root/node_modules/moduleB/index.js </span><br><span class="line"></span><br><span class="line">/node_modules/moduleB.js</span><br><span class="line">/node_modules/moduleB/package.json (if it specifies a "main" property)</span><br><span class="line">/node_modules/moduleB/index.js</span><br></pre></td></tr></table></figure></p>
+<p>所以在项目tsconfig.json中添加一句话<br>“moduleResolution”: “node”,<br>覆盖掉默认配置classic，将能按node方式查找，问题解决。<br>相关连接： <a href="https://www.typescriptlang.org/docs/handbook/module-resolution.html" target="_blank" rel="noopener">https://www.typescriptlang.org/docs/handbook/module-resolution.html</a>    </p>
 
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2018/08/10/mimiprogram-certificate-problem-android/">
-        <h2 class="post-title">
-            关于android系统中微信小程序连接后台报错
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                在远程调试我的微信小程序的时候发现了如下报错:errMsg:"request:fail ssl hand shake error:java.security.cert.CertPathValidatorException: Trust anchor for certification path ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('/img/header.jpg')">
-    <a href="/2018/08/06/how_to_insert_image/">
-        <h2 class="post-title">
-            如何在hexo博客中插入图片
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-06
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
+                <hr>
                 
-首先在_config.yml文件中插入post_asset_folder: true
-然后通过命令hexo new theName生成新的博客，此时生成的博客可以自带一个同名文件夹里面放入的图片，可以在md文档中当做当前路径的图片引用。  
 
-配置为![](image.jpg) 的图片显示如下..
-            </p>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/06/04/malcov-learn1/" data-toggle="tooltip" data-placement="top"
+                           title="隐马尔科夫模型学习笔记">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
         </div>
-    </a>
 
-</div>
+        <div class="row">
+            <!-- Sidebar Container -->
 
-<hr>
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/img/avatar.jpg"/>
-                    
-                    <h5><a href="/about/">Yu Junhua</a></h5>
-                    
-                    <p>前端总结，所思所想！</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
                         
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/xiaohua11111">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/eason-yu">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
+                    </div>
+                </section>
+                
 
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
                         
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/eason-shsf">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
+                        <li><a href="http://www.xiaoleon.cn">xiao leon</a></li>
                         
                     </ul>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
                 
-                <li><a href="http://www.xiaoleon.cn" target="_blank">xiao leon</a></li>
-                
-            </ul>
-            
-
+            </div>
         </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
